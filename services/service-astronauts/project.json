@@ -1,0 +1,41 @@
+{
+  "name": "@astro-hub/service-astronauts",
+  "main": "dist/main.js",
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "main": "services/service-astronauts/src/main.ts",
+        "outputPath": "dist/services/service-astronauts",
+        "tsConfig": "services/service-astronauts/tsconfig.app.json",
+        "packageJson": "services/service-astronauts/package.json"
+      }
+    },
+    "serve": {
+      "executor": "@nx/js:node",
+      "options": {
+        "buildTarget": "@astro-hub/service-astronauts:build"
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "options": {
+        "jestConfig": "services/service-astronauts/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:eslint",
+      "options": {
+        "lintFilePatterns": ["services/service-astronauts/src/**/*.ts"]
+      }
+    },
+    "format": {
+      "executor": "@nx/js:prettier",
+      "options": {
+        "formatFilePatterns": ["services/service-astronauts/src/**/*.ts"]
+      }
+    }
+  }
+}
